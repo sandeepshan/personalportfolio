@@ -8,388 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-
-/* ============================================
-   Sandeep Shankar — Portfolio Design System
-   Direction: Executive Briefing
-   ============================================ */
-
-:root {
-  /* Color */
-  --ink-deep: #0F1419;
-  --ink-card: #1A1F26;
-  --ink-card-hover: #20262F;
-  --cream: #F7F5F0;
-  --amber: #C2703D;
-  --amber-bright: #D4854F;
-  --sage: #8A9A8E;
-  --muted: #6B6F76;
-  --hairline: #232830;
-  --hairline-light: #2A3038;
-
-  /* Type */
-  --font-display: 'Fraunces', serif;
-  --font-body: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-
-  /* Layout */
-  --max-width: 1120px;
-  --section-pad-y: 96px;
-  --section-pad-y-mobile: 56px;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--ink-deep);
-  color: var(--cream);
-  font-family: var(--font-body);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-
-a { color: inherit; text-decoration: none; }
-
-.wrap {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 32px;
-}
-
-@media (max-width: 640px) {
-  .wrap { padding: 0 20px; }
-}
-
-/* ---------- Navigation ---------- */
-.site-nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(15, 20, 25, 0.88);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--hairline);
-}
-
-.site-nav .wrap {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 72px;
-}
-
-.nav-logo {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 19px;
-  letter-spacing: -0.01em;
-  color: var(--cream);
-}
-
-.nav-logo .dot { color: var(--amber); }
-
-.nav-links {
-  display: flex;
-  gap: 36px;
-  align-items: center;
-}
-
-.nav-links a {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--sage);
-  transition: color 0.15s ease;
-  position: relative;
-  padding: 4px 0;
-}
-
-.nav-links a:hover { color: var(--cream); }
-
-.nav-links a.active { color: var(--cream); }
-
-.nav-links a.active::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 1.5px;
-  background: var(--amber);
-}
-
-.nav-toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--cream);
-  font-size: 22px;
-  cursor: pointer;
-}
-
-@media (max-width: 760px) {
-  .nav-links {
-    position: fixed;
-    top: 72px;
-    left: 0;
-    right: 0;
-    background: var(--ink-deep);
-    border-bottom: 1px solid var(--hairline);
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-    padding: 8px 20px 16px;
-    transform: translateY(-8px);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.15s ease, transform 0.15s ease;
-  }
-  .nav-links.open {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
-  .nav-links a {
-    padding: 12px 0;
-    width: 100%;
-    border-bottom: 1px solid var(--hairline);
-    font-size: 15px;
-  }
-  .nav-toggle { display: block; }
-}
-
-/* ---------- Eyebrow / labels ---------- */
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--sage);
-  margin-bottom: 18px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.eyebrow::before {
-  content: '';
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--amber);
-  display: inline-block;
-}
-
-/* ---------- Headings ---------- */
-h1, h2, h3 {
-  font-family: var(--font-display);
-  color: var(--cream);
-  letter-spacing: -0.01em;
-}
-
-h1 {
-  font-weight: 500;
-  font-size: clamp(36px, 5.2vw, 56px);
-  line-height: 1.12;
-}
-
-h1 em {
-  font-style: italic;
-  color: var(--amber);
-  font-weight: 500;
-}
-
-h2 {
-  font-weight: 500;
-  font-size: clamp(28px, 3.4vw, 38px);
-  line-height: 1.18;
-  margin-bottom: 16px;
-}
-
-h3 {
-  font-weight: 600;
-  font-size: 19px;
-  color: var(--cream);
-}
-
-p {
-  color: #B8B5AD;
-  font-size: 16px;
-  line-height: 1.7;
-}
-
-.lede {
-  font-size: 18px;
-  line-height: 1.65;
-  color: #C8C5BC;
-  max-width: 560px;
-}
-
-/* ---------- Sections ---------- */
-.section {
-  padding: var(--section-pad-y) 0;
-  border-bottom: 1px solid var(--hairline);
-}
-
-.section:last-of-type { border-bottom: none; }
-
-@media (max-width: 640px) {
-  .section { padding: var(--section-pad-y-mobile) 0; }
-}
-
-/* ---------- Buttons ---------- */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 14.5px;
-  padding: 13px 24px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  border: 1.5px solid transparent;
-}
-
-.btn-primary {
-  background: var(--amber);
-  color: var(--ink-deep);
-}
-.btn-primary:hover { background: var(--amber-bright); }
-
-.btn-secondary {
-  background: transparent;
-  border-color: var(--hairline-light);
-  color: var(--cream);
-}
-.btn-secondary:hover { border-color: var(--sage); }
-
-/* ---------- Cards ---------- */
-.card {
-  background: var(--ink-card);
-  border: 1px solid var(--hairline);
-  border-radius: 6px;
-  padding: 28px;
-  transition: border-color 0.15s ease, background 0.15s ease;
-}
-.card:hover {
-  border-color: var(--hairline-light);
-  background: var(--ink-card-hover);
-}
-
-/* ---------- Stats ---------- */
-.stat-row {
-  display: flex;
-  gap: 48px;
-  flex-wrap: wrap;
-}
-
-.stat .num {
-  font-family: var(--font-display);
-  font-size: 36px;
-  font-weight: 500;
-  color: var(--amber);
-  line-height: 1;
-}
-
-.stat .label {
-  font-size: 12.5px;
-  color: var(--muted);
-  margin-top: 6px;
-}
-
-.stat-lead .num {
-  font-size: 64px;
-  line-height: 0.95;
-}
-
-.stat-lead .label {
-  font-size: 14px;
-  letter-spacing: 0.02em;
-  margin-top: 10px;
-}
-
-/* ---------- Pull quote ---------- */
-.pull-quote {
-  border-left: 2px solid var(--amber);
-  padding: 4px 0 4px 24px;
-  margin: 32px 0;
-}
-
-.pull-quote p {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 19px;
-  line-height: 1.5;
-  color: #E8E5DC;
-}
-
-.pull-quote span {
-  display: block;
-  margin-top: 10px;
-  font-size: 12.5px;
-  color: var(--muted);
-  font-family: var(--font-mono);
-}
-
-/* ---------- Footer ---------- */
-.site-footer {
-  padding: 40px 0;
-  border-top: 1px solid var(--hairline);
-}
-.site-footer .wrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-.site-footer p {
-  font-size: 13px;
-  color: var(--muted);
-}
-.footer-links {
-  display: flex;
-  gap: 24px;
-}
-.footer-links a {
-  font-size: 13px;
-  color: var(--sage);
-}
-.footer-links a:hover { color: var(--cream); }
-
-/* ---------- Utility ---------- */
-.grid-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-}
-@media (max-width: 760px) {
-  .grid-2 { grid-template-columns: 1fr; }
-}
-
-.grid-3 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 24px;
-}
-@media (max-width: 760px) {
-  .grid-3 { grid-template-columns: 1fr; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
-}
-
-:focus-visible {
-  outline: 2px solid var(--amber);
-  outline-offset: 2px;
-}
-
-
-</style>
+<link rel="stylesheet" href="shared.css">
 <style>
   /* ---------- Page header / story ---------- */
   .page-header { padding: 56px 0 8px; }
@@ -430,10 +49,7 @@ p {
     margin-bottom: 18px;
     display: block;
   }
-  .personal-card h3 {
-    font-size: 18px;
-    margin-bottom: 12px;
-  }
+  .personal-card h3 { font-size: 18px; margin-bottom: 12px; }
   .personal-card p {
     font-size: 14.5px;
     color: #B8B5AD;
@@ -450,11 +66,7 @@ p {
   }
 
   /* ---------- Projects ---------- */
-  .project-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
+  .project-list { display: flex; flex-direction: column; gap: 0; }
   .project-row {
     display: grid;
     grid-template-columns: 1fr 1.4fr;
@@ -468,10 +80,7 @@ p {
     .project-row { grid-template-columns: 1fr; gap: 14px; }
   }
   .project-meta .eyebrow { margin-bottom: 12px; }
-  .project-meta h3 {
-    font-size: 21px;
-    margin-bottom: 10px;
-  }
+  .project-meta h3 { font-size: 21px; margin-bottom: 10px; }
   .project-meta a.project-link {
     display: inline-flex;
     align-items: center;
@@ -482,11 +91,7 @@ p {
     margin-top: 14px;
   }
   .project-meta a.project-link:hover { color: var(--amber-bright); }
-  .project-features {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+  .project-features { display: flex; flex-direction: column; gap: 10px; }
   .project-features .feature {
     display: flex;
     align-items: baseline;
@@ -495,21 +100,185 @@ p {
     color: #B8B5AD;
   }
   .project-features .feature .f-dot {
-    width: 5px;
-    height: 5px;
+    width: 5px; height: 5px;
     border-radius: 50%;
     background: var(--sage);
     flex-shrink: 0;
     margin-top: 2px;
   }
+
+  /* ============================================================
+     Leadership Philosophy
+     ============================================================ */
+  .philosophy-quote {
+    position: relative;
+    padding: 40px 0 52px;
+    max-width: 860px;
+  }
+  .philosophy-quote .q-mark {
+    font-family: var(--font-display);
+    font-size: 108px;
+    line-height: 0.72;
+    color: var(--amber);
+    opacity: 0.22;
+    display: block;
+    margin-bottom: -12px;
+    user-select: none;
+    pointer-events: none;
+  }
+  .philosophy-quote blockquote {
+    font-family: var(--font-display);
+    font-size: clamp(26px, 3.8vw, 44px);
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.22;
+    color: var(--cream);
+    letter-spacing: -0.01em;
+  }
+  .philosophy-quote blockquote em {
+    color: var(--amber);
+    font-style: italic;
+  }
+
+  .principle-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 4px;
+  }
+  @media (max-width: 760px) {
+    .principle-grid { grid-template-columns: 1fr; }
+  }
+
+  .principle-card {
+    background: var(--ink-card);
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+  }
+  .principle-card:hover {
+    border-color: rgba(194, 112, 61, 0.55);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 36px rgba(194, 112, 61, 0.10);
+  }
+  .principle-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--amber);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.35s ease;
+  }
+  .principle-card:hover::before { transform: scaleX(1); }
+  .principle-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--amber);
+    margin-bottom: 18px;
+    display: block;
+  }
+  .principle-card h3 { font-size: 20px; margin-bottom: 12px; line-height: 1.25; }
+  .principle-card p { font-size: 14.5px; color: #B8B5AD; line-height: 1.68; }
+
+  /* ============================================================
+     Core Expertise
+     ============================================================ */
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 960px) {
+    .expertise-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 520px) {
+    .expertise-grid { grid-template-columns: 1fr; }
+  }
+
+  .expertise-card {
+    background: var(--ink-card);
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    padding: 28px 24px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+  }
+  .expertise-card:hover {
+    border-color: var(--hairline-light);
+    transform: translateY(-3px);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.42);
+  }
+  .expertise-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--amber), transparent);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.38s ease;
+  }
+  .expertise-card:hover::after { transform: scaleX(1); }
+
+  .expertise-cat {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .expertise-cat::before {
+    content: '';
+    width: 14px;
+    height: 1.5px;
+    background: var(--amber);
+    flex-shrink: 0;
+  }
+
+  .skill-list { display: flex; flex-direction: column; }
+  .skill-tag {
+    font-size: 13.5px;
+    color: #C0BDB5;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--hairline);
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    line-height: 1.3;
+    transition: color 0.15s ease;
+  }
+  .skill-tag:last-child { border-bottom: none; }
+  .skill-tag::before {
+    content: '';
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--sage);
+    flex-shrink: 0;
+    opacity: 0.7;
+    transition: background 0.15s ease, opacity 0.15s ease;
+  }
+  .expertise-card:hover .skill-tag { color: #DEDBD2; }
+  .expertise-card:hover .skill-tag::before { background: var(--amber); opacity: 1; }
 </style>
 </head>
 <body>
+<div id="reading-progress" role="progressbar" aria-hidden="true"></div>
 
 <nav class="site-nav">
   <div class="wrap">
     <a href="index.html" class="nav-logo">Sandeep Shankar<span class="dot">.</span></a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
     <div class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
       <a href="about.html" class="active">About</a>
@@ -530,61 +299,147 @@ p {
 
 <section class="section" style="padding-top: 24px;">
   <div class="wrap story">
-    <p>My career began as a Senior BI Analyst, hands-on with the data itself — extracting, cleansing, and reporting it for businesses that didn't yet trust it to make decisions on its own. Sixteen years later, I lead the function that does that work for an entire organisation, at a scale I couldn't have imagined from that first seat.</p>
-    <p>What's stayed constant is the belief that data only creates value the day someone outside the data team can act on it without asking for help. Governance, modern platforms, AI enablement — none of it matters if it doesn't end in someone, somewhere, making a better decision faster. That's the discipline I've built every team around, from a 25-person squad at Australia Post to the centralised Data, Analytics &amp; AI function I run at iSelect today.</p>
-    <p>I've come to believe leadership in data is less about being the smartest person on the platform and more about being the person the business trusts to translate ambiguity into a plan. My teams have sustained employee engagement above 85% — not because the work is easy, but because people know what they're building toward and why it matters.</p>
+    <p>My career began as a Senior BI Analyst, hands-on with the data itself &#8212; extracting, cleansing, and reporting it for businesses that didn&#8217;t yet trust it to make decisions on its own. Sixteen years later, I lead the function that does that work for an entire organisation, at a scale I couldn&#8217;t have imagined from that first seat.</p>
+    <p>What&#8217;s stayed constant is the belief that data only creates value the day someone outside the data team can act on it without asking for help. Governance, modern platforms, AI enablement &#8212; none of it matters if it doesn&#8217;t end in someone, somewhere, making a better decision faster. That&#8217;s the discipline I&#8217;ve built every team around, from a 25-person squad at Australia Post to the centralised Data, Analytics &amp; AI function I run at iSelect today.</p>
+    <p>I&#8217;ve come to believe leadership in data is less about being the smartest person on the platform and more about being the person the business trusts to translate ambiguity into a plan. My teams have sustained employee engagement above 85% &#8212; not because the work is easy, but because people know what they&#8217;re building toward and why it matters.</p>
   </div>
 </section>
 
+<!-- Leadership Philosophy -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow">Leadership Philosophy</div>
+
+    <div class="philosophy-quote">
+      <span class="q-mark">&#8220;</span>
+      <blockquote>Great analytics isn&#8217;t about dashboards. It&#8217;s about <em>enabling better decisions.</em></blockquote>
+    </div>
+
+    <div class="principle-grid">
+      <div class="principle-card">
+        <span class="principle-num">01</span>
+        <h3>Decision-first analytics</h3>
+        <p>Every dashboard, pipeline, and model should trace directly back to a decision someone needs to make. If it doesn&#8217;t, it isn&#8217;t valuable &#8212; it&#8217;s decorative. The question I ask before any build is: what will change once someone sees this?</p>
+      </div>
+      <div class="principle-card">
+        <span class="principle-num">02</span>
+        <h3>People before technology</h3>
+        <p>Platforms don&#8217;t create data cultures &#8212; people do. The best technology investment is the one that makes your team trusted by the business, not the one that impresses a vendor. Adoption is the metric that matters most.</p>
+      </div>
+      <div class="principle-card">
+        <span class="principle-num">03</span>
+        <h3>Build trust through data</h3>
+        <p>Data governance isn&#8217;t a compliance exercise. It&#8217;s the foundation on which every analysis, every model, and every business conversation depends. An organisation that trusts its data moves faster &#8212; and more confidently &#8212; than one that doesn&#8217;t.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Core Expertise -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Core Expertise</div>
+      <h2>Where 16 years of depth lands</h2>
+      <p class="lede">Four domains, each built through sustained practice &#8212; not certifications alone.</p>
+    </div>
+
+    <div class="expertise-grid">
+      <div class="expertise-card">
+        <div class="expertise-cat">Leadership</div>
+        <div class="skill-list">
+          <span class="skill-tag">Strategy</span>
+          <span class="skill-tag">Executive Communication</span>
+          <span class="skill-tag">Stakeholder Management</span>
+          <span class="skill-tag">Team Building</span>
+        </div>
+      </div>
+
+      <div class="expertise-card">
+        <div class="expertise-cat">Analytics</div>
+        <div class="skill-list">
+          <span class="skill-tag">Business Intelligence</span>
+          <span class="skill-tag">KPI Design</span>
+          <span class="skill-tag">Forecasting</span>
+          <span class="skill-tag">Customer Analytics</span>
+        </div>
+      </div>
+
+      <div class="expertise-card">
+        <div class="expertise-cat">AI</div>
+        <div class="skill-list">
+          <span class="skill-tag">Generative AI</span>
+          <span class="skill-tag">Predictive Analytics</span>
+          <span class="skill-tag">AI Governance</span>
+          <span class="skill-tag">Automation</span>
+        </div>
+      </div>
+
+      <div class="expertise-card">
+        <div class="expertise-cat">Technology</div>
+        <div class="skill-list">
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Power BI &middot; Tableau</span>
+          <span class="skill-tag">Azure &middot; Snowflake</span>
+          <span class="skill-tag">Databricks</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Outside work -->
 <section class="section">
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Outside work</div>
-      <h2>What I do when I'm not in a data platform</h2>
-      <p class="lede">The same instincts that show up in my day job — building something durable, leading a team, showing up consistently — carry straight through to how I spend my time outside it.</p>
+      <h2>What I do when I&#8217;m not in a data platform</h2>
+      <p class="lede">The same instincts that show up in my day job &#8212; building something durable, leading a team, showing up consistently &#8212; carry straight through to how I spend my time outside it.</p>
     </div>
     <div class="personal-grid">
       <div class="personal-card">
-        <span class="p-icon">🎾</span>
+        <span class="p-icon">&#127934;</span>
         <h3>Tennis</h3>
-        <p>A regular at the Australian Open most years, and these days more often watching from the stands for my own child, who plays competitively as a junior. There's a particular kind of patience that comes from junior tennis parenting — it overlaps more with leading a team than people expect.</p>
-        <div class="p-detail">Australian Open · regular attendee</div>
+        <p>A regular at the Australian Open most years, and these days more often watching from the stands for my own child, who plays competitively as a junior. There&#8217;s a particular kind of patience that comes from junior tennis parenting &#8212; it overlaps more with leading a team than people expect.</p>
+        <div class="p-detail">Australian Open &middot; regular attendee</div>
       </div>
       <div class="personal-card">
-        <span class="p-icon">🏏</span>
+        <span class="p-icon">&#127955;</span>
         <h3>Cricket</h3>
-        <p>A genuinely massive cricket fan — IPL season has its own dedicated place on my calendar, fantasy league standings included. It's one of the few places I'll happily argue a selection decision with the same intensity I'd bring to a platform roadmap.</p>
-        <div class="p-detail">IPL fantasy league · season regular</div>
+        <p>A genuinely massive cricket fan &#8212; IPL season has its own dedicated place on my calendar, fantasy league standings included. It&#8217;s one of the few places I&#8217;ll happily argue a selection decision with the same intensity I&#8217;d bring to a platform roadmap.</p>
+        <div class="p-detail">IPL fantasy league &middot; season regular</div>
       </div>
       <div class="personal-card">
-        <span class="p-icon">🌺</span>
-        <h3>WMCG — Community Leadership</h3>
-        <p>I'm a leader within the Wyndham Malayalee Community Group (WMCG), established in 2008 to preserve and celebrate Kerala's cultural heritage in Wyndham, Victoria. Each year that means helping run Onam and Vishu festivals, educational programs, and the community's biggest night of the year — Kalasandhya.</p>
-        <div class="p-detail">WMCG · est. 2008 · Wyndham, Victoria</div>
+        <span class="p-icon">&#127802;</span>
+        <h3>WMCG &#8212; Community Leadership</h3>
+        <p>I&#8217;m a leader within the Wyndham Malayalee Community Group (WMCG), established in 2008 to preserve and celebrate Kerala&#8217;s cultural heritage in Wyndham, Victoria. Each year that means helping run Onam and Vishu festivals, educational programs, and the community&#8217;s biggest night of the year &#8212; Kalasandhya.</p>
+        <div class="p-detail">WMCG &middot; est. 2008 &middot; Wyndham, Victoria</div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Side projects -->
 <section class="section">
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Side projects</div>
       <h2>The same instinct, off the clock</h2>
-      <p class="lede">Turning a real, specific problem into something people can actually use — that's the job. It's also what I keep doing for fun.</p>
+      <p class="lede">Turning a real, specific problem into something people can actually use &#8212; that&#8217;s the job. It&#8217;s also what I keep doing for fun.</p>
     </div>
 
     <div class="project-list">
       <div class="project-row">
         <div class="project-meta">
           <div class="eyebrow">Live build</div>
-          <h3>Kalasandhya 2026 — Event Coordination</h3>
-          <p>A full event-management app built for organising our community's annual Onam celebration — programs, participants, sponsors, and the final run sheet, all in one place.</p>
-          <a class="project-link" href="https://kalasandhya.netlify.app/" target="_blank" rel="noopener">kalasandhya.netlify.app →</a>
+          <h3>Kalasandhya 2026 &#8212; Event Coordination</h3>
+          <p>A full event-management app built for organising our community&#8217;s annual Onam celebration &#8212; programs, participants, sponsors, and the final run sheet, all in one place.</p>
+          <a class="project-link" href="https://kalasandhya.netlify.app/" target="_blank" rel="noopener">kalasandhya.netlify.app &#8594;</a>
         </div>
         <div class="project-features">
           <div class="feature"><span class="f-dot"></span>Program &amp; participant roster management with live sync</div>
-          <div class="feature"><span class="f-dot"></span>Drag-and-drop sequence builder for the night's running order</div>
+          <div class="feature"><span class="f-dot"></span>Drag-and-drop sequence builder for the night&#8217;s running order</div>
           <div class="feature"><span class="f-dot"></span>Sponsor tracking and a computed final run sheet with timings</div>
         </div>
       </div>
@@ -592,13 +447,13 @@ p {
       <div class="project-row">
         <div class="project-meta">
           <div class="eyebrow">Live build</div>
-          <h3>Kalasandhya 2026 — Performance Upload Portal</h3>
-          <p>A public-facing upload portal so performers can submit their own audio and video directly — landing straight into a private Drive archive, no manual collection required.</p>
-          <a class="project-link" href="https://kalasandhya-uploads.netlify.app/" target="_blank" rel="noopener">kalasandhya-uploads.netlify.app →</a>
+          <h3>Kalasandhya 2026 &#8212; Performance Upload Portal</h3>
+          <p>A public-facing upload portal so performers can submit their own audio and video directly &#8212; landing straight into a private Drive archive, no manual collection required.</p>
+          <a class="project-link" href="https://kalasandhya-uploads.netlify.app/" target="_blank" rel="noopener">kalasandhya-uploads.netlify.app &#8594;</a>
         </div>
         <div class="project-features">
           <div class="feature"><span class="f-dot"></span>Chunked, resumable uploads built to survive flaky connections on large video files</div>
-          <div class="feature"><span class="f-dot"></span>Server-verified success — never tells a submitter "done" until Drive confirms it</div>
+          <div class="feature"><span class="f-dot"></span>Server-verified success &#8212; never tells a submitter &#8220;done&#8221; until Drive confirms it</div>
           <div class="feature"><span class="f-dot"></span>OAuth-based, so every file lands directly in my own Drive, no third party involved</div>
         </div>
       </div>
@@ -607,12 +462,12 @@ p {
         <div class="project-meta">
           <div class="eyebrow">Live build</div>
           <h3>FIFA World Cup 2026 Dashboard</h3>
-          <p>A live tournament companion — scores, fixtures, and a Hall of Fame back to 1930 — built mostly because I wanted a better way to follow the tournament than scattered apps and sites.</p>
-          <a class="project-link" href="https://fifaworldcuplive-sandy.netlify.app/" target="_blank" rel="noopener">fifaworldcuplive-sandy.netlify.app →</a>
+          <p>A live tournament companion &#8212; scores, fixtures, and a Hall of Fame back to 1930 &#8212; built mostly because I wanted a better way to follow the tournament than scattered apps and sites.</p>
+          <a class="project-link" href="https://fifaworldcuplive-sandy.netlify.app/" target="_blank" rel="noopener">fifaworldcuplive-sandy.netlify.app &#8594;</a>
         </div>
         <div class="project-features">
           <div class="feature"><span class="f-dot"></span>Live scores, fixtures, and group standings, auto-updating</div>
-          <div class="feature"><span class="f-dot"></span>Historical Hall of Fame — every World Cup, winner, and Golden Boot since 1930</div>
+          <div class="feature"><span class="f-dot"></span>Historical Hall of Fame &#8212; every World Cup, winner, and Golden Boot since 1930</div>
           <div class="feature"><span class="f-dot"></span>A tournament simulator with form-based, random, and host-boost prediction modes</div>
         </div>
       </div>
@@ -622,7 +477,7 @@ p {
 
 <footer class="site-footer">
   <div class="wrap">
-    <p>© 2026 Sandeep Shankar. Melbourne, Australia.</p>
+    <p>&#169; 2026 Sandeep Shankar. Melbourne, Australia.</p>
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/sandeepshankar-cdmp-25a88143" target="_blank" rel="noopener">LinkedIn</a>
       <a href="contact.html">Contact</a>
@@ -630,11 +485,7 @@ p {
   </div>
 </footer>
 
-<script>
-  document.getElementById('navToggle').addEventListener('click', function() {
-    document.getElementById('navLinks').classList.toggle('open');
-  });
-</script>
-
+<script src="shared.js"></script>
+<button id="back-to-top" aria-label="Back to top" title="Back to top">&#8593;</button>
 </body>
 </html>
