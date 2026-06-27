@@ -4,139 +4,239 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Speaking — Sandeep Shankar</title>
-<meta name="description" content="Podcasts, keynotes, and panels on data governance, self-service analytics, and leading data teams.">
+<meta name="description" content="Podcasts, keynotes, and panels on data governance, AI, self-service analytics, and leading data teams.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
-  .page-header { padding: 56px 0 8px; }
+  .page-header { padding: 56px 0 48px; }
   .page-header h1 { margin-bottom: 14px; max-width: 700px; }
 
-  .group-section .section-head { margin-bottom: 32px; }
+  /* Speaking stats */
+  .speaking-stats {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--hairline);
+  }
+  .sp-stat .sp-num {
+    font-family: var(--font-display);
+    font-size: 38px;
+    font-weight: 500;
+    color: var(--amber);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .sp-stat .sp-label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
 
-  /* ---------- Podcast cards ---------- */
+  /* Featured quote */
+  .speaking-quote {
+    background: var(--ink-card);
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    padding: 40px 44px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+  .speaking-quote::before {
+    content: '\201C';
+    position: absolute;
+    top: -10px;
+    left: 28px;
+    font-family: var(--font-display);
+    font-size: 140px;
+    color: var(--amber);
+    opacity: 0.1;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .speaking-quote blockquote {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 2.6vw, 28px);
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.45;
+    margin: 0 0 20px;
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+  }
+  .speaking-quote blockquote em { color: var(--amber); font-style: italic; }
+  .speaking-quote .sq-source {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .speaking-quote .sq-source strong { color: var(--sage); font-weight: 500; }
+
+  /* Podcast cards */
   .podcast-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
-  @media (max-width: 760px) {
-    .podcast-grid { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 760px) { .podcast-grid { grid-template-columns: 1fr; } }
+
   .podcast-card {
     background: var(--ink-card);
     border: 1px solid var(--hairline);
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 28px;
     display: flex;
     flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .podcast-card .eyebrow { margin-bottom: 14px; }
-  .podcast-card h3 {
-    font-size: 19px;
-    margin-bottom: 10px;
-    line-height: 1.3;
+  .podcast-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--amber), rgba(194,112,61,0.2));
+    border-radius: 10px 0 0 10px;
   }
-  .podcast-card p {
-    font-size: 14.5px;
-    flex-grow: 1;
-    margin-bottom: 18px;
+  .podcast-card:hover {
+    border-color: rgba(194,112,61,0.35);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   }
+
+  /* Waveform visual */
+  .podcast-wave {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 28px;
+    margin-bottom: 20px;
+  }
+  .podcast-wave span {
+    display: block;
+    width: 3px;
+    background: var(--amber);
+    border-radius: 2px;
+    opacity: 0.6;
+  }
+
+  .podcast-card .eyebrow { margin-bottom: 12px; }
+  .podcast-card h3 { font-size: 18px; margin-bottom: 10px; line-height: 1.3; }
+  .podcast-card p { font-size: 14px; flex-grow: 1; margin-bottom: 18px; color: #B0ADA6; }
   .podcast-card .listen-link {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     font-family: var(--font-mono);
-    font-size: 12.5px;
+    font-size: 12px;
     color: var(--amber);
     font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: color 0.15s ease, gap 0.15s ease;
   }
-  .podcast-card .listen-link:hover { color: var(--amber-bright); }
+  .podcast-card .listen-link:hover { color: var(--amber-bright); gap: 12px; }
   .podcast-card .meta-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 16px;
-    padding-top: 16px;
+    padding-top: 14px;
     border-top: 1px solid var(--hairline);
   }
   .podcast-card .meta-row span {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 10.5px;
     color: var(--muted);
   }
 
-  /* ---------- Engagement list (keynotes/panels) ---------- */
-  .engagement-list {
-    display: flex;
-    flex-direction: column;
-  }
+  /* Engagement rows */
+  .engagement-list { display: flex; flex-direction: column; }
   .engagement-row {
     display: grid;
-    grid-template-columns: 130px 1fr;
-    gap: 24px;
-    padding: 26px 0;
+    grid-template-columns: 80px 1fr;
+    gap: 24px 32px;
+    padding: 28px 0;
     border-top: 1px solid var(--hairline);
+    transition: background 0.15s ease;
   }
   .engagement-row:first-child { border-top: none; }
-  @media (max-width: 700px) {
-    .engagement-row { grid-template-columns: 1fr; gap: 6px; }
-  }
+  .engagement-row:hover { background: rgba(255,255,255,0.01); border-radius: 8px; }
+  @media (max-width: 700px) { .engagement-row { grid-template-columns: 1fr; gap: 6px; } }
+
   .engagement-date {
     font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--muted);
-    padding-top: 3px;
+    font-size: 22px;
+    font-weight: 500;
+    color: rgba(194,112,61,0.25);
+    line-height: 1;
+    padding-top: 2px;
+    text-align: right;
   }
-  .engagement-content h3 {
-    font-size: 17px;
-    margin-bottom: 6px;
-  }
+
+  .engagement-content h3 { font-size: 16.5px; margin-bottom: 6px; line-height: 1.3; }
   .engagement-content .e-venue {
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 11px;
     color: var(--amber);
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 6px;
     margin-bottom: 10px;
   }
-  .engagement-content p {
-    font-size: 14.5px;
-    margin: 0;
+  .engagement-content .e-venue::before {
+    content: '';
+    width: 12px; height: 1px;
+    background: var(--amber);
+    opacity: 0.5;
   }
+  .engagement-content p { font-size: 14px; margin: 0; color: #B0ADA6; }
+
   .e-type-tag {
     display: inline-block;
     font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.05em;
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--sage);
-    border: 1px solid var(--hairline-light);
     border-radius: 3px;
-    padding: 2px 7px;
+    padding: 3px 8px;
     margin-bottom: 10px;
   }
+  .e-type-tag.keynote { color: var(--amber); background: rgba(194,112,61,0.12); border: 1px solid rgba(194,112,61,0.25); }
+  .e-type-tag.panel   { color: var(--sage);  background: rgba(138,154,142,0.12); border: 1px solid rgba(138,154,142,0.25); }
+  .e-type-tag.speaker { color: #B8C8FF; background: rgba(76,139,245,0.1); border: 1px solid rgba(76,139,245,0.2); }
+  .e-type-tag.fireside{ color: #E8C880; background: rgba(232,200,128,0.1); border: 1px solid rgba(232,200,128,0.2); }
 
-  /* ---------- Cert ---------- */
+  /* Credentials */
   .cert-row {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 20px;
     padding: 22px 0;
+    border-top: 1px solid var(--hairline);
+    transition: background 0.15s ease;
   }
+  .cert-row:first-of-type { border-top: none; }
   .cert-badge {
-    width: 56px;
-    height: 56px;
-    border-radius: 8px;
+    width: 52px; height: 52px;
+    border-radius: 10px;
     background: var(--ink-card);
     border: 1px solid var(--hairline-light);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 22px;
+    font-size: 20px;
     flex-shrink: 0;
   }
-  .cert-row h3 { font-size: 17px; margin-bottom: 4px; }
+  .cert-row h3 { font-size: 16px; margin-bottom: 5px; }
   .cert-row p { font-size: 13.5px; margin: 0; }
 </style>
 </head>
@@ -146,7 +246,7 @@
 <nav class="site-nav">
   <div class="wrap">
     <a href="index.html" class="nav-logo">Sandeep Shankar<span class="dot">.</span></a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
     <div class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
@@ -161,11 +261,28 @@
 <header class="page-header">
   <div class="wrap">
     <div class="eyebrow">Speaking</div>
-    <h1>Conversations on data governance,<br>self-service, and leading teams</h1>
-    <p class="lede">Podcasts, keynotes, and panels — most of it circling back to the same idea: data only matters once people trust it enough to act on it.</p>
+    <h1>On data, governance,<br>AI &mdash; and why it matters</h1>
+    <p class="lede">Podcasts, keynotes, panels, and fireside conversations &mdash; most of it circling back to the same idea: data only matters once people trust it enough to act on it.</p>
+    <div class="speaking-stats">
+      <div class="sp-stat"><div class="sp-num">10+</div><div class="sp-label">Keynotes &amp; panels</div></div>
+      <div class="sp-stat"><div class="sp-num">2</div><div class="sp-label">Podcast appearances</div></div>
+      <div class="sp-stat"><div class="sp-num">5+</div><div class="sp-label">Years speaking</div></div>
+      <div class="sp-stat"><div class="sp-num">4</div><div class="sp-label">Recurring themes</div></div>
+    </div>
   </div>
 </header>
 
+<!-- Featured quote -->
+<section class="section" style="padding-top:56px; padding-bottom:56px;">
+  <div class="wrap">
+    <div class="speaking-quote">
+      <blockquote>Data only matters once people <em>trust it enough to act on it.</em> The governance conversation isn&rsquo;t about compliance &mdash; it&rsquo;s about building that trust at scale.</blockquote>
+      <div class="sq-source"><strong>Sandeep Shankar</strong> &nbsp;&middot;&nbsp; Data Governance &amp; AI Leadership</div>
+    </div>
+  </div>
+</section>
+
+<!-- Podcasts -->
 <section class="section group-section">
   <div class="wrap">
     <div class="section-head">
@@ -173,24 +290,34 @@
       <h2>Long-form conversations</h2>
     </div>
     <div class="podcast-grid">
+
       <div class="podcast-card">
+        <div class="podcast-wave" aria-hidden="true">
+          <span style="height:8px"></span><span style="height:14px"></span><span style="height:20px"></span><span style="height:24px"></span><span style="height:18px"></span><span style="height:26px"></span><span style="height:16px"></span><span style="height:22px"></span><span style="height:12px"></span><span style="height:20px"></span><span style="height:8px"></span><span style="height:16px"></span><span style="height:24px"></span><span style="height:20px"></span><span style="height:14px"></span>
+        </div>
         <div class="eyebrow">Lead with Data</div>
         <h3>Data Governance and Building Towards a Data Culture</h3>
-        <p>A conversation with host Rina Gami on what it actually takes to move an organisation from reactive reporting to a genuine data culture — and why governance has to be part of that shift, not a brake on it.</p>
-        <a class="listen-link" href="https://music.amazon.com/podcasts/3d4020b7-d20a-4108-89a4-2bbac144704e/episodes/6095db20-3b4c-4540-8cfe-7b9ee90325d3/lead-with-data-podcast-data-governance-and-building-towards-a-data-culture-with-sandeep-shankar" target="_blank" rel="noopener">Listen on Amazon Music →</a>
-        <div class="meta-row"><span>Series 1 · Episode 9</span><span>Host: Rina Gami</span></div>
+        <p>A conversation with host Rina Gami on what it actually takes to move an organisation from reactive reporting to a genuine data culture &mdash; and why governance has to be part of that shift, not a brake on it.</p>
+        <a class="listen-link" href="https://music.amazon.com/podcasts/3d4020b7-d20a-4108-89a4-2bbac144704e/episodes/6095db20-3b4c-4540-8cfe-7b9ee90325d3/lead-with-data-podcast-data-governance-and-building-towards-a-data-culture-with-sandeep-shankar" target="_blank" rel="noopener">Listen on Amazon Music &rarr;</a>
+        <div class="meta-row"><span>Series 1 &middot; Episode 9</span><span>Host: Rina Gami</span></div>
       </div>
+
       <div class="podcast-card">
+        <div class="podcast-wave" aria-hidden="true">
+          <span style="height:12px"></span><span style="height:22px"></span><span style="height:16px"></span><span style="height:26px"></span><span style="height:10px"></span><span style="height:20px"></span><span style="height:24px"></span><span style="height:14px"></span><span style="height:18px"></span><span style="height:26px"></span><span style="height:12px"></span><span style="height:22px"></span><span style="height:18px"></span><span style="height:10px"></span><span style="height:16px"></span>
+        </div>
         <div class="eyebrow">Stick to Data</div>
         <h3>When Data and People Meet</h3>
-        <p>How to make data transformation feel less like a headache or technical debt, and more like a team sport — a vehicle for embracing the future rather than a compliance exercise.</p>
-        <a class="listen-link" href="https://open.spotify.com/episode/0qe83AGMNfn8P25UXy2mqQ" target="_blank" rel="noopener">Listen on Spotify →</a>
-        <div class="meta-row"><span>Aug 2025</span><span>52 min</span></div>
+        <p>How to make data transformation feel less like technical debt and more like a team sport &mdash; a vehicle for embracing the future rather than a compliance exercise.</p>
+        <a class="listen-link" href="https://open.spotify.com/episode/0qe83AGMNfn8P25UXy2mqQ" target="_blank" rel="noopener">Listen on Spotify &rarr;</a>
+        <div class="meta-row"><span>Aug 2025 &middot; 52 min</span><span>Stick to Data</span></div>
       </div>
+
     </div>
   </div>
 </section>
 
+<!-- Keynotes & Panels -->
 <section class="section group-section">
   <div class="wrap">
     <div class="section-head">
@@ -198,12 +325,13 @@
       <h2>On stage</h2>
     </div>
     <div class="engagement-list">
+
       <div class="engagement-row">
         <div class="engagement-date">2025</div>
         <div class="engagement-content">
-          <span class="e-type-tag">Speaker</span>
+          <span class="e-type-tag speaker">Speaker</span>
           <h3>Data + AI Conference 2025</h3>
-          <span class="e-venue">Global Institute of AI · Victoria University, Melbourne</span>
+          <div class="e-venue">Global Institute of AI &middot; Victoria University, Melbourne</div>
           <p>Speaking on driving data-centric transformation, optimising business operations, and delivering impactful AI and analytics solutions for Australian enterprises.</p>
         </div>
       </div>
@@ -211,76 +339,78 @@
       <div class="engagement-row">
         <div class="engagement-date">2024</div>
         <div class="engagement-content">
-          <span class="e-type-tag">Keynote</span>
-          <h3>Don't worry about budgets, fight the right battle for data value</h3>
-          <span class="e-venue">Sit-Down Melbourne · The Langham</span>
-          <p>A solo keynote to a room of data leaders on building successful analytics teams — and why the budget follows the wins, not the other way around.</p>
+          <span class="e-type-tag keynote">Keynote</span>
+          <h3>Don&rsquo;t worry about budgets &mdash; fight the right battle for data value</h3>
+          <div class="e-venue">Sit-Down Melbourne &middot; The Langham</div>
+          <p>A solo keynote to a room of data leaders on building successful analytics teams &mdash; and why the budget follows the wins, not the other way around.</p>
         </div>
       </div>
 
       <div class="engagement-row">
         <div class="engagement-date">2024</div>
         <div class="engagement-content">
-          <span class="e-type-tag">Speaker</span>
+          <span class="e-type-tag speaker">Speaker</span>
           <h3>Data Engineering Summit</h3>
-          <span class="e-venue">Crown Events &amp; Conferences, Melbourne</span>
-          <p>Speaking to a room of data engineering practitioners and leaders on building platforms that scale with the business, not just the data.</p>
+          <div class="e-venue">Crown Events &amp; Conferences, Melbourne</div>
+          <p>Speaking to data engineering practitioners and leaders on building platforms that scale with the business, not just the data.</p>
         </div>
       </div>
 
       <div class="engagement-row">
         <div class="engagement-date">2023</div>
         <div class="engagement-content">
-          <span class="e-type-tag">Panel</span>
+          <span class="e-type-tag panel">Panel</span>
           <h3>Aligning Data Architecture with Business Strategy</h3>
-          <span class="e-venue">Data Architecture Melbourne</span>
-          <p>A panel discussion on aligning enterprise data architecture decisions with where the business is actually heading — alongside fellow data leaders from across Melbourne.</p>
+          <div class="e-venue">Data Architecture Melbourne</div>
+          <p>A panel discussion on aligning enterprise data architecture decisions with where the business is actually heading &mdash; alongside fellow data leaders from across Melbourne.</p>
         </div>
       </div>
 
       <div class="engagement-row">
         <div class="engagement-date">2023</div>
         <div class="engagement-content">
-          <span class="e-type-tag">Panel</span>
+          <span class="e-type-tag panel">Panel</span>
           <h3>Data Governance, Privacy and Ethics</h3>
-          <span class="e-venue">CDAO Melbourne · Corinium</span>
-          <p>A panel on the key considerations in data governance, privacy, and ethics — shaping how organisations build trust into their data and AI practices from the ground up.</p>
+          <div class="e-venue">CDAO Melbourne &middot; Corinium</div>
+          <p>A panel on the key considerations in data governance, privacy and ethics &mdash; shaping how organisations build trust into their data and AI practices from the ground up.</p>
         </div>
       </div>
 
       <div class="engagement-row">
         <div class="engagement-date">2022</div>
         <div class="engagement-content">
-          <span class="e-type-tag">Fireside</span>
+          <span class="e-type-tag fireside">Fireside</span>
           <h3>Data Governance and Management in an AI World</h3>
-          <span class="e-venue">Ops World · Data Futurology, with Felipe Flores</span>
-          <p>A keynote fireside conversation with Felipe Flores (founder of Data Futurology) on a topic that's only become more relevant since — governing data and AI together, not as separate problems.</p>
+          <div class="e-venue">Ops World &middot; Data Futurology with Felipe Flores</div>
+          <p>A keynote fireside with Felipe Flores (founder of Data Futurology) on governing data and AI together &mdash; not as separate problems.</p>
         </div>
       </div>
 
       <div class="engagement-row">
         <div class="engagement-date">2022</div>
         <div class="engagement-content">
-          <span class="e-type-tag">Speaker</span>
-          <h3>Advancing AI</h3>
-          <span class="e-venue">Data Futurology · Crown Promenade Melbourne</span>
-          <p>"How to Govern Your Data &amp; AI Initiatives?" — speaking to a room of data and AI practitioners on building governance that enables rather than blocks.</p>
+          <span class="e-type-tag speaker">Speaker</span>
+          <h3>Advancing AI &mdash; How to Govern Your Data &amp; AI Initiatives</h3>
+          <div class="e-venue">Data Futurology &middot; Crown Promenade Melbourne</div>
+          <p>Speaking to data and AI practitioners on building governance that enables rather than blocks innovation.</p>
         </div>
       </div>
 
       <div class="engagement-row">
         <div class="engagement-date">2022</div>
         <div class="engagement-content">
-          <span class="e-type-tag">Panel</span>
+          <span class="e-type-tag panel">Panel</span>
           <h3>Data Analytics Summit 2022</h3>
-          <span class="e-venue">Melbourne</span>
-          <p>A panel discussion on data, governance, and analytics, exploring how governance enables — rather than restricts — good analytics practice.</p>
+          <div class="e-venue">Melbourne</div>
+          <p>Exploring how governance enables &mdash; rather than restricts &mdash; good analytics practice, alongside fellow data leaders.</p>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
+<!-- Credentials -->
 <section class="section">
   <div class="wrap">
     <div class="section-head">
@@ -288,31 +418,31 @@
       <h2>Credentials</h2>
     </div>
     <div class="cert-row">
-      <div class="cert-badge">🏅</div>
+      <div class="cert-badge">&#127885;</div>
       <div>
-        <h3>DAMA CDMP — Certified Data Management Professional</h3>
-        <p>Associate level.</p>
+        <h3>DAMA CDMP &mdash; Certified Data Management Professional</h3>
+        <p>Associate level. Internationally recognised certification in data management.</p>
       </div>
     </div>
     <div class="cert-row">
-      <div class="cert-badge">🎓</div>
+      <div class="cert-badge">&#127891;</div>
       <div>
         <h3>Executive, DAMA Australia</h3>
-        <p>January 2026 — present. Contributing to national data management standards and industry advancement.</p>
+        <p>January 2026 &mdash; present. Contributing to national data management standards and industry advancement.</p>
       </div>
     </div>
     <div class="cert-row">
-      <div class="cert-badge">🏛️</div>
+      <div class="cert-badge">&#127963;</div>
       <div>
         <h3>Branch Leader, DAMA Melbourne Chapter</h3>
-        <p>2023 — 2024. Led community events, mentorship, and capability-building programs.</p>
+        <p>2023 &mdash; 2024. Led community events, mentorship, and capability-building programs for Melbourne&rsquo;s data community.</p>
       </div>
     </div>
     <div class="cert-row">
-      <div class="cert-badge">🧭</div>
+      <div class="cert-badge">&#129517;</div>
       <div>
-        <h3>Mentor — DAMA and RMIT Programs</h3>
-        <p>Guiding emerging data professionals in analytics and data management careers.</p>
+        <h3>Mentor &mdash; DAMA and RMIT Programs</h3>
+        <p>Guiding emerging data professionals in analytics and data management careers. Passionate about building the next generation of data leaders.</p>
       </div>
     </div>
   </div>
@@ -320,16 +450,15 @@
 
 <footer class="site-footer">
   <div class="wrap">
-    <p>© 2026 Sandeep Shankar. Melbourne, Australia.</p>
+    <p>&copy; 2026 Sandeep Shankar. Melbourne, Australia.</p>
     <div class="footer-links">
-      <a href="https://www.linkedin.com/in/sandeepshankar-cdmp-25a88143" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/sandeep-shankar-cdmp-25a88143/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="contact.html">Contact</a>
     </div>
   </div>
 </footer>
 
 <script src="shared.js"></script>
-
-<button id="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
+<button id="back-to-top" aria-label="Back to top" title="Back to top">&uarr;</button>
 </body>
 </html>

@@ -15,18 +15,14 @@
   .page-header .lede { margin: 0 auto; max-width: 480px; }
   .page-header .eyebrow { justify-content: center; }
 
-  /* ---------- Photo gallery ---------- */
+  /* Photo gallery */
   .gallery-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
   }
-  @media (max-width: 760px) {
-    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 480px) {
-    .gallery-grid { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 760px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .gallery-grid { grid-template-columns: 1fr; } }
 
   .gallery-tile {
     position: relative;
@@ -35,24 +31,16 @@
     border: 1px solid var(--hairline);
     aspect-ratio: 4/5;
   }
-  .gallery-tile img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+  .gallery-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .gallery-tile .g-cap {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 0; left: 0; right: 0;
     padding: 12px 14px;
     background: linear-gradient(0deg, rgba(0,0,0,0.75), transparent);
     font-family: var(--font-mono);
     font-size: 11.5px;
     color: var(--cream);
   }
-
   .gallery-tile.placeholder {
     background: var(--ink-card);
     display: flex;
@@ -81,62 +69,72 @@
     color: var(--muted);
     text-align: center;
   }
-
   .gallery-tile.wide { aspect-ratio: 16/10; }
-  @media (min-width: 761px) {
-    .gallery-tile.span-2 { grid-column: span 2; }
-  }
+  @media (min-width: 761px) { .gallery-tile.span-2 { grid-column: span 2; } }
 
-  /* ---------- Life intro ---------- */
+  /* Life intro two-column */
   .life-intro {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 48px;
     align-items: start;
   }
-  @media (max-width: 760px) {
-    .life-intro { grid-template-columns: 1fr; gap: 32px; }
+  @media (max-width: 760px) { .life-intro { grid-template-columns: 1fr; gap: 40px; } }
+
+  /* Location image blocks */
+  .location-img {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 28px;
+    border: 1px solid var(--hairline);
+    position: relative;
+    height: 240px;
   }
+  .location-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .location-img .loc-label {
+    position: absolute;
+    bottom: 14px;
+    left: 16px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    background: rgba(0,0,0,0.35);
+    padding: 4px 10px;
+    border-radius: 3px;
+    backdrop-filter: blur(4px);
+  }
+
   .life-intro-block h3 { font-size: 22px; margin-bottom: 14px; }
   .life-intro-block p {
-    font-size: 16px;
+    font-size: 15.5px;
     line-height: 1.75;
     color: #B8B5AD;
     margin-bottom: 14px;
   }
-  .life-fact {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 0;
-    border-top: 1px solid var(--hairline);
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--muted);
-  }
-  .life-fact .lf-icon { font-size: 16px; }
-  .life-fact strong { color: var(--sage); font-weight: 500; }
 
-  /* ---------- Photo upload prompt ---------- */
+  /* Photo prompt */
   .photo-prompt {
     background: var(--ink-card);
     border: 1px dashed var(--hairline-light);
     border-radius: 8px;
-    padding: 24px 28px;
+    padding: 20px 24px;
     margin-bottom: 24px;
   }
   .photo-prompt p {
-    font-size: 13px;
+    font-size: 12.5px;
     color: var(--muted);
     font-family: var(--font-mono);
     line-height: 1.65;
+    margin: 0;
   }
   .photo-prompt code {
     color: var(--amber);
-    background: rgba(194, 112, 61, 0.1);
+    background: rgba(194,112,61,0.1);
     padding: 1px 5px;
     border-radius: 3px;
-    font-size: 11.5px;
+    font-size: 11px;
   }
 </style>
 </head>
@@ -146,7 +144,7 @@
 <nav class="site-nav">
   <div class="wrap">
     <a href="index.html" class="nav-logo">Sandeep Shankar<span class="dot">.</span></a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
     <div class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
@@ -162,78 +160,81 @@
   <div class="wrap">
     <div class="eyebrow">Life</div>
     <h1>Family, travel, and everything outside the data platform</h1>
-    <p class="lede">The same instincts — showing up, building something worth keeping, being present — run right through everything outside of work too.</p>
+    <p class="lede">The same instincts &mdash; showing up, building something worth keeping, being present &mdash; run right through everything outside of work too.</p>
   </div>
 </header>
 
 <section class="section" style="padding-top: 40px;">
   <div class="wrap">
     <div class="life-intro">
+
+      <!-- Melbourne -->
       <div class="life-intro-block">
+        <div class="location-img">
+          <img src="melbourne.webp" alt="Melbourne cityscape" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div class="loc-label">Melbourne &middot; Victoria</div>
+        </div>
         <h3>Home base: Melbourne</h3>
-        <p>We've built a life in Wyndham, in Melbourne's west — family first, always. My wife and I have two kids, and a big part of how I spend my time outside work revolves around them: school, sport, community, the small rituals that make a neighbourhood feel like home.</p>
-        <p>My son plays competitive junior tennis, which means weekends at courts, long drives to tournaments, and developing a patience for slow points that I'm told is good for me. The Australian Open is a fixture on the calendar — we've attended most years as a family.</p>
-        <div class="life-fact"><span class="lf-icon">🏡</span><div><strong>Melbourne, Victoria</strong> — Wyndham</div></div>
-        <div class="life-fact"><span class="lf-icon">🎾</span><div><strong>Tennis family</strong> — junior competition + Australian Open regulars</div></div>
-        <div class="life-fact"><span class="lf-icon">🏏</span><div><strong>Cricket</strong> — IPL fantasy league, unapologetically competitive</div></div>
-        <div class="life-fact"><span class="lf-icon">🌺</span><div><strong>WMCG leader</strong> — Kerala cultural heritage, Wyndham community</div></div>
-      </div>
-      <div class="life-intro-block">
-        <h3>Roots and community</h3>
-        <p>I grew up in Kerala and have been in Australia long enough that it's simply home — but the connection to where I came from is something I actively keep alive, partly for my kids, partly because it matters.</p>
-        <p>That's the heart of my involvement with the Wyndham Malayalee Community Group (WMCG), established in 2008 to preserve Kerala's cultural heritage in Wyndham. Each year I help organise Onam and Vishu celebrations, educational programs, and Kalasandhya — our community's biggest cultural evening of the year. It's one of those things that asks a lot and gives back more.</p>
+        <p>We&rsquo;ve built a life in Wyndham, in Melbourne&rsquo;s west &mdash; family first, always. My wife and I have two kids, and a big part of how I spend my time outside work revolves around them: school, sport, community, the small rituals that make a neighbourhood feel like home.</p>
+        <p>My son plays competitive junior tennis, which means weekends at courts, long drives to tournaments, and developing a patience for slow points that I&rsquo;m told is good for me. The Australian Open is a fixture on the calendar &mdash; we&rsquo;ve attended most years as a family.</p>
         <p>IPL season has its own dedicated place on the calendar too. Fantasy league standings are taken very seriously in our household.</p>
       </div>
+
+      <!-- Kerala -->
+      <div class="life-intro-block">
+        <div class="location-img">
+          <img src="kerala1.jpg" alt="Kerala backwaters — God's Own Country" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div class="loc-label">Kerala &middot; God&rsquo;s Own Country</div>
+        </div>
+        <h3>Roots: Kerala &mdash; God&rsquo;s Own Country</h3>
+        <p>I grew up in Kerala &mdash; the land of backwaters, coconut groves, and a culture that takes pride in knowledge, community, and celebration. They call it God&rsquo;s Own Country for good reason, and no matter how long I&rsquo;ve called Melbourne home, that connection runs deep.</p>
+        <p>That&rsquo;s the heart of my involvement with the Wyndham Malayalee Community Group (WMCG), established in 2008 to preserve Kerala&rsquo;s rich cultural heritage here in Wyndham. Each year I help organise Onam and Vishu celebrations, educational programmes, and Kalasandhya &mdash; our community&rsquo;s biggest cultural evening. It&rsquo;s one of those things that asks a lot and gives back more.</p>
+        <p>Keeping the culture alive for my kids &mdash; the food, the festivals, the language, the stories &mdash; matters deeply. Kerala will always be part of who I am.</p>
+      </div>
+
     </div>
   </div>
 </section>
 
+<!-- Photo gallery -->
 <section class="section">
   <div class="wrap">
     <div class="section-head" style="margin-bottom: 28px;">
       <div class="eyebrow">Photos</div>
       <h2>Moments worth keeping</h2>
-      <p class="lede">Drop in your photos here — family, travel, tennis courts, festival nights, anything that belongs on this page.</p>
-    </div>
-
-    <div class="photo-prompt">
-      <p>
-        To add a photo, replace any placeholder tile with:<br>
-        <code>&lt;div class="gallery-tile"&gt;&lt;img src="data:image/jpeg;base64,..." alt="Description"&gt;&lt;div class="g-cap"&gt;Caption&lt;/div&gt;&lt;/div&gt;</code><br>
-        Add <code>class="span-2 wide"</code> to a tile for a wider feature shot.
-      </p>
+      <p class="lede">Drop in your photos here &mdash; family, travel, tennis courts, festival nights, anything that belongs on this page.</p>
     </div>
 
     <div class="gallery-grid">
       <div class="gallery-tile placeholder">
-        <span class="ph-icon">🎾</span>
+        <span class="ph-icon">&#127951;</span>
         <span class="ph-label">Tennis</span>
-        <span class="ph-sub">Courts · tournaments · AO</span>
+        <span class="ph-sub">Courts &middot; tournaments &middot; AO</span>
       </div>
       <div class="gallery-tile placeholder">
-        <span class="ph-icon">🌺</span>
+        <span class="ph-icon">&#127866;</span>
         <span class="ph-label">Onam &amp; Vishu</span>
-        <span class="ph-sub">WMCG · Wyndham</span>
+        <span class="ph-sub">WMCG &middot; Wyndham</span>
       </div>
       <div class="gallery-tile placeholder">
-        <span class="ph-icon">🏏</span>
+        <span class="ph-icon">&#127951;</span>
         <span class="ph-label">Cricket season</span>
-        <span class="ph-sub">IPL · watching · playing</span>
+        <span class="ph-sub">IPL &middot; watching &middot; playing</span>
       </div>
       <div class="gallery-tile placeholder">
-        <span class="ph-icon">✈️</span>
+        <span class="ph-icon">&#9992;&#65039;</span>
         <span class="ph-label">Travel</span>
         <span class="ph-sub">Family trips</span>
       </div>
       <div class="gallery-tile placeholder">
-        <span class="ph-icon">🎭</span>
+        <span class="ph-icon">&#127917;</span>
         <span class="ph-label">Kalasandhya</span>
-        <span class="ph-sub">Cultural evening · annual</span>
+        <span class="ph-sub">Cultural evening &middot; annual</span>
       </div>
       <div class="gallery-tile placeholder">
-        <span class="ph-icon">🏡</span>
+        <span class="ph-icon">&#127968;</span>
         <span class="ph-label">Home &amp; family</span>
-        <span class="ph-sub">Melbourne · Wyndham</span>
+        <span class="ph-sub">Melbourne &middot; Wyndham</span>
       </div>
     </div>
   </div>
@@ -241,15 +242,16 @@
 
 <footer class="site-footer">
   <div class="wrap">
-    <p>© 2026 Sandeep Shankar. Melbourne, Australia.</p>
+    <p>&copy; 2026 Sandeep Shankar. Melbourne, Australia.</p>
     <div class="footer-links">
-      <a href="https://www.linkedin.com/in/sandeepshankar-cdmp-25a88143" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/sandeep-shankar-cdmp-25a88143/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="contact.html">Contact</a>
     </div>
   </div>
 </footer>
 
 <script src="shared.js"></script>
-<button id="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
+<button id="back-to-top" aria-label="Back to top" title="Back to top">&uarr;</button>
 </body>
 </html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         

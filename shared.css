@@ -110,10 +110,15 @@ a { color: inherit; text-decoration: none; }
 .nav-toggle {
   display: none;
   background: none;
-  border: none;
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
   color: var(--cream);
-  font-size: 22px;
+  font-size: 20px;
   cursor: pointer;
+  padding: 6px 10px;
+  line-height: 1;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 @media (max-width: 760px) {
@@ -122,16 +127,18 @@ a { color: inherit; text-decoration: none; }
     top: 72px;
     left: 0;
     right: 0;
-    background: var(--ink-deep);
+    z-index: 200;
+    background: rgba(15, 20, 25, 0.98);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--hairline);
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
-    padding: 8px 20px 16px;
+    padding: 8px 24px 20px;
     transform: translateY(-8px);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.15s ease, transform 0.15s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease;
   }
   .nav-links.open {
     opacity: 1;
@@ -139,11 +146,14 @@ a { color: inherit; text-decoration: none; }
     transform: translateY(0);
   }
   .nav-links a {
-    padding: 12px 0;
+    padding: 14px 0;
     width: 100%;
     border-bottom: 1px solid var(--hairline);
-    font-size: 15px;
+    font-size: 16px;
+    display: block;
+    -webkit-tap-highlight-color: transparent;
   }
+  .nav-links a:last-child { border-bottom: none; }
   .nav-toggle { display: block; }
 }
 
@@ -464,6 +474,79 @@ p {
 .will-animate.animated {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ---------- Mobile layout fixes ---------- */
+@media (max-width: 640px) {
+  /* Typography scale-down */
+  h1 { font-size: clamp(28px, 8vw, 44px) !important; }
+  h2 { font-size: clamp(22px, 6vw, 32px) !important; }
+
+  /* Prevent horizontal overflow */
+  body { overflow-x: hidden; }
+  .wrap { overflow-x: hidden; }
+
+  /* Stat grids — stack on mobile */
+  .exp-summary,
+  .speaking-stats {
+    flex-direction: column;
+    gap: 0;
+  }
+  .exp-stat {
+    border-right: none !important;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  /* Achievement grid — single column on mobile */
+  .achievement-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Speaking engagement rows — stack columns */
+  .engagement-row {
+    grid-template-columns: 1fr !important;
+    gap: 4px;
+  }
+
+  /* Role head grid */
+  .role-head {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Contact topic cards — full width */
+  .topics-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Life intro — already stacks via its own media query */
+
+  /* Gallery — 2 columns minimum */
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Speaking quote padding */
+  .speaking-quote {
+    padding: 28px 24px !important;
+  }
+  .speaking-quote blockquote {
+    font-size: 18px !important;
+  }
+
+  /* Career arc meta labels — scroll horizontally if needed */
+  .arc-meta-row {
+    gap: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+  }
+
+  /* Hide hover-only transforms on touch */
+  .achievement-card:hover,
+  .personal-card:hover,
+  .podcast-card:hover {
+    transform: none;
+  }
 }
 
 /* ---------- Reduced motion ---------- */
