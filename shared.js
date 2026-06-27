@@ -71,6 +71,7 @@
       '.principle-card',
       '.expertise-card',
       '.philosophy-quote',
+      '.am-item',
     ].join(',');
 
     var revealEls = document.querySelectorAll(revealSelectors);
@@ -144,9 +145,4 @@
       });
     }, { threshold: 0.6 });
 
-    counterEls.forEach(function (el) {
-      counterObserver.observe(el);
-    });
-  }
-
-})();
+    counterEls.f
