@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Now — Sandeep Shankar</title>
+<meta name="description" content="What Sandeep Shankar is focused on right now.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Now — Sandeep Shankar">
+<meta property="og:description" content="What I'm working on, watching, and thinking about right now.">
+<meta property="og:url" content="https://sandeepshankar.com/now.html">
+<meta property="og:image" content="https://sandeepshankar.com/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  /* Hero */
+  .now-hero {
+    padding: 72px 0 64px;
+    border-bottom: 1px solid var(--hairline);
+    position: relative;
+    overflow: hidden;
+  }
+  .now-hero h1 { margin-bottom: 16px; max-width: 640px; }
+  .now-hero .lede { max-width: 500px; }
+  .updated {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 28px;
+    background: var(--ink-card);
+    border: 1px solid var(--hairline);
+    border-radius: 100px;
+    padding: 6px 14px;
+  }
+  .live-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--amber);
+    animation: live-pulse 2.5s ease infinite;
+    flex-shrink: 0;
+  }
+  @keyframes live-pulse { 0%,100%{opacity:1;} 50%{opacity:0.25;} }
+
+  /* Now cards grid */
+  .now-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    padding: 56px 0;
+  }
+  @media (max-width: 700px) { .now-cards { grid-template-columns: 1fr; } }
+
+  .now-card {
+    background: var(--ink-card);
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .now-card:hover {
+    border-color: var(--hairline-light);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+  }
+  .now-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    transition: opacity 0.2s ease;
+    opacity: 0.6;
+  }
+  .now-card:hover::before { opacity: 1; }
+  .now-card.c-amber::before { background: linear-gradient(90deg, var(--amber), transparent); }
+  .now-card.c-sage::before  { background: linear-gradient(90deg, var(--sage), transparent); }
+  .now-card.c-blue::before  { background: linear-gradient(90deg, #5B8FD4, transparent); }
+  .now-card.c-green::before { background: linear-gradient(90deg, #5C9E6E, transparent); }
+
+  /* Card accent glyph */
+  .now-glyph {
+    font-size: 52px;
+    line-height: 1;
+    margin-bottom: 20px;
+    display: block;
+    filter: saturate(0.7);
+  }
+
+  .now-card-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .c-amber .now-card-eyebrow { color: var(--amber); }
+  .c-sage  .now-card-eyebrow { color: var(--sage); }
+  .c-blue  .now-card-eyebrow { color: #5B8FD4; }
+  .c-green .now-card-eyebrow { color: #5C9E6E; }
+
+  .now-card h3 { font-size: 22px; margin-bottom: 14px; line-height: 1.25; }
+  .now-card p  { font-size: 15px; color: #A8A5A0; line-height: 1.72; margin-bottom: 12px; }
+  .now-card p:last-child { margin-bottom: 0; }
+
+  /* Tags inside cards */
+  .now-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .now-tag {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid;
+  }
+  .c-amber .now-tag { color: var(--amber); border-color: rgba(194,112,61,0.3); background: rgba(194,112,61,0.06); }
+  .c-sage  .now-tag { color: var(--sage);  border-color: rgba(138,154,142,0.3); background: rgba(138,154,142,0.06); }
+  .c-blue  .now-tag { color: #5B8FD4; border-color: rgba(91,143,212,0.3); background: rgba(91,143,212,0.06); }
+  .c-green .now-tag { color: #5C9E6E; border-color: rgba(92,158,110,0.3); background: rgba(92,158,110,0.06); }
+
+  /* Wide card spans full width */
+  @media (min-width: 701px) { .now-card.wide { grid-column: span 2; } }
+  .now-card.wide .wide-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  @media (max-width: 700px) { .now-card.wide .wide-inner { grid-template-columns: 1fr; gap: 24px; } }
+
+  /* Working-on list inside wide card */
+  .focus-list { display: flex; flex-direction: column; gap: 0; margin-top: 4px; }
+  .focus-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--hairline);
+    align-items: flex-start;
+  }
+  .focus-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .focus-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--amber);
+    opacity: 0.6;
+    padding-top: 3px;
+    flex-shrink: 0;
+    width: 20px;
+  }
+  .focus-text { font-size: 14.5px; color: #B0ADA6; line-height: 1.6; }
+  .focus-text strong { color: var(--cream); font-weight: 500; display: block; margin-bottom: 2px; font-size: 15px; }
+
+  /* Footer note */
+  .now-footer-note {
+    padding: 32px 0 64px;
+    border-top: 1px solid var(--hairline);
+  }
+  .now-footer-note a {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .now-footer-note a:hover { color: var(--sage); }
+</style>
+</head>
+<body>
+<div id="reading-progress" role="progressbar" aria-hidden="true"></div>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="index.html" class="nav-logo">Sandeep Shankar</a>
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" onclick="var n=document.getElementById('navLinks');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'))">&#9776;</button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="experience.html">Experience</a>
+      <a href="speaking.html">Speaking</a>
+      <a href="life.html">Life</a>
+      <a href="contact.html">Contact</a>
+      <a href="now.html" class="active">Now</a>
+    </div>
+  </div>
+</nav>
+
+<div class="now-hero">
+  <div class="wrap">
+    <div class="eyebrow">Now</div>
+    <h1>What I&rsquo;m focused on</h1>
+    <p class="lede">A live snapshot of what&rsquo;s on my mind, on my plate, and on my screen. Updated when things shift.</p>
+    <div class="updated">
+      <span class="live-dot"></span>
+      June 2026 &mdash; Melbourne, Australia
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="now-cards">
+
+    <!-- FIFA World Cup 2026 -->
+    <div class="now-card c-amber">
+      <span class="now-glyph">&#127942;</span>
+      <div class="now-card-eyebrow">Watching closely</div>
+      <h3>FIFA World Cup 2026</h3>
+      <p>The biggest sporting event on the planet is finally here &mdash; and as a cricket and football fan who grew up watching World Cups with the family, this one feels different. Hosted across USA, Canada, and Mexico for the first time, 48 nations, and the question everyone&rsquo;s debating: who gets past the knockouts.</p>
+      <p>The analytics side of me can&rsquo;t help but follow the data stories too &mdash; player tracking, expected goals, how teams are using AI-assisted scouting. Sport is one of the best places to watch data actually change outcomes in real time.</p>
+      <div class="now-tags">
+        <span class="now-tag">USA &middot; Canada &middot; Mexico</span>
+        <span class="now-tag">48 nations</span>
+        <span class="now-tag">Family viewing</span>
+      </div>
+    </div>
+
+    <!-- Wimbledon -->
+    <div class="now-card c-sage">
+      <span class="now-glyph">&#127955;</span>
+      <div class="now-card-eyebrow">On the calendar</div>
+      <h3>Wimbledon 2026</h3>
+      <p>Wimbledon is a fixture &mdash; the one tournament where tradition and elite performance sit together in a way that feels genuinely different to every other Slam. With my son playing junior tennis competitively, I watch the game differently now. The mental side, the pressure management, the way the best players reset between points.</p>
+      <p>We make it a family event most years &mdash; up early, match schedules on the screen, strong opinions about who should have gone to the net.</p>
+      <div class="now-tags">
+        <span class="now-tag">Grass season</span>
+        <span class="now-tag">Junior tennis</span>
+        <span class="now-tag">Family tradition</span>
+      </div>
+    </div>
+
+    <!-- Embedding AI -->
+    <div class="now-card c-blue wide">
+      <div class="wide-inner">
+        <div>
+          <span class="now-glyph">&#129504;</span>
+          <div class="now-card-eyebrow">At work &amp; at home</div>
+          <h3>Embedding AI into life and work</h3>
+          <p>The thing I keep coming back to: AI isn&rsquo;t a project you deliver, it&rsquo;s a habit you build. At work, that means moving the organisation from AI curiosity to AI capability &mdash; with the right governance and data foundations underneath. At home, it means experimenting with tools that actually save time or spark better thinking, not just adopting AI for its own sake.</p>
+          <p>The question I ask constantly: &ldquo;Does this make the decision better, or just faster?&rdquo; The answer changes a lot about how you deploy it.</p>
+        </div>
+        <div>
+          <div class="focus-list">
+            <div class="focus-item">
+              <div class="focus-num">01</div>
+              <div class="focus-text"><strong>AI adoption roadmap at iSelect</strong>Moving from proof-of-concept to enterprise-grade AI with governance guardrails in place</div>
+            </div>
+            <div class="focus-item">
+              <div class="focus-num">02</div>
+              <div class="focus-text"><strong>Agentic workflows</strong>Exploring where autonomous agents genuinely reduce cognitive load vs. where human judgment is irreplaceable</div>
+            </div>
+            <div class="focus-item">
+              <div class="focus-num">03</div>
+              <div class="focus-text"><strong>AI literacy for non-technical leaders</strong>How to help executives ask better questions of AI &mdash; without turning them into prompt engineers</div>
+            </div>
+            <div class="focus-item">
+              <div class="focus-num">04</div>
+              <div class="focus-text"><strong>Family use</strong>Finding AI tools that genuinely earn a place in daily life rather than adding complexity</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Making memories -->
+    <div class="now-card c-green wide">
+      <div class="wide-inner">
+        <div>
+          <span class="now-glyph">&#127968;</span>
+          <div class="now-card-eyebrow">What matters most</div>
+          <h3>Making memories every day</h3>
+          <p>This one is less a task and more an intention. With two kids growing fast, I&rsquo;ve become more deliberate about the small things &mdash; being present at the dinner table, making it to the Saturday match, taking the long way home occasionally. The memories that stick aren&rsquo;t usually the planned ones.</p>
+          <p>Kerala will always be home in the way that only a childhood home can be. Melbourne is where we&rsquo;re building ours. Both matter, in different and complementary ways.</p>
+        </div>
+        <div>
+          <div class="focus-list">
+            <div class="focus-item">
+              <div class="focus-num">&rarr;</div>
+              <div class="focus-text"><strong>Junior tennis weekends</strong>Courts, car rides, tournament nerves &mdash; the full experience</div>
+            </div>
+            <div class="focus-item">
+              <div class="focus-num">&rarr;</div>
+              <div class="focus-text"><strong>WMCG community events</strong>Onam, Vishu, and Kalasandhya &mdash; keeping Kerala alive in Wyndham</div>
+            </div>
+            <div class="focus-item">
+              <div class="focus-num">&rarr;</div>
+              <div class="focus-text"><strong>Family travel</strong>Planning the next trip &mdash; somewhere the kids will remember</div>
+            </div>
+            <div class="focus-item">
+              <div class="focus-num">&rarr;</div>
+              <div class="focus-text"><strong>IPL season rituals</strong>Fantasy league, strong opinions, the usual chaos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="now-footer-note">
+    <a href="https://nownownow.com/about" target="_blank" rel="noopener">What is a /now page? &rarr;</a>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>&copy; 2026 Sandeep Shankar. Melbourne, Australia.</p>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/sandeep-shankar-cdmp-25a88143/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<button id="back-to-top" aria-label="Back to top" title="Back to top">&uarr;</button>
+</body>
+</html>

@@ -472,9 +472,31 @@ p {
 /* Applied via JS so content is visible if JS doesn't load */
 .will-animate {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(18px)
+/* ---------- Section progress rail ---------- */
+.section-rail {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 80;
+  padding: 0;
+  background: none;
+  border: none;
 }
-.will-animate.animated {
-  opacity: 1;
- 
+.rail-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--hairline-light);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.rail-dot:hover { background: var(--sage); transform: scale(1.3); }
+.rail-dot.active { background: var(--amber); transform: scale(1.2); }
+@media (max-width: 900px) { .section-rail { display: none; } }

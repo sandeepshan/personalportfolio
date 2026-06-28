@@ -15,7 +15,6 @@
     }
     navToggle.addEventListener('click', toggleNav);
 
-    // Close when a link is tapped
     navLinks.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
         navLinks.classList.remove('open');
@@ -23,7 +22,6 @@
       });
     });
 
-    // Close when tapping outside the nav
     document.addEventListener('touchstart', function (e) {
       if (navLinks.classList.contains('open') &&
           !navLinks.contains(e.target) &&
@@ -32,6 +30,7 @@
         navToggle.setAttribute('aria-expanded', 'false');
       }
     }, { passive: true });
+
     document.addEventListener('click', function (e) {
       if (navLinks.classList.contains('open') &&
           !navLinks.contains(e.target) &&
@@ -65,9 +64,48 @@
     });
   }
 
+  /* ---------- Section progress dots ---------- */
+  (function () {
+    var sections = document.querySelectorAll('.section[data-label]');
+    if (sections.length < 2) return;
+
+    var rail = document.createElement('nav');
+    rail.className = 'section-rail';
+    rail.setAttribute('aria-label', 'Page sections');
+
+    var dots = [];
+    sections.forEach(function (sec, i) {
+      var dot = document.createElement('button');
+      dot.className = 'rail-dot';
+      dot.setAttribute('type', 'button');
+      dot.setAttribute('aria-label', sec.getAttribute('data-label'));
+      dot.setAttribute('title', sec.getAttribute('data-label'));
+      dot.addEventListener('click', function () {
+        sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      rail.appendChild(dot);
+      dots.push({ dot: dot, sec: sec });
+    });
+
+    document.body.appendChild(rail);
+
+    if ('IntersectionObserver' in window) {
+      var railObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          dots.forEach(function (d) {
+            if (d.sec === entry.target) {
+              d.dot.classList.toggle('active', entry.isIntersecting);
+            }
+          });
+        });
+      }, { threshold: 0.3 });
+
+      dots.forEach(function (d) { railObserver.observe(d.sec); });
+    }
+  })();
+
   /* ---------- Scroll reveal ---------- */
   if ('IntersectionObserver' in window) {
-    // Inject styles only when JS is running (avoids flash of invisible content)
     var revealStyle = document.createElement('style');
     revealStyle.textContent =
       '.will-animate{opacity:0;transform:translateY(18px);transition:opacity 0.5s ease,transform 0.5s ease;}' +
@@ -76,24 +114,12 @@
     document.head.appendChild(revealStyle);
 
     var revealSelectors = [
-      '.achievement-card',
-      '.personal-card',
-      '.podcast-card',
-      '.engagement-row',
-      '.timeline-item',
-      '.project-row',
-      '.cert-row',
-      '.edu-row',
-      '.gallery-tile',
-      '.pull-quote',
-      '.section-head',
-      '.stat-row',
-      '.lede',
-      '.story p',
-      '.principle-card',
-      '.expertise-card',
-      '.philosophy-quote',
-      '.am-item',
+      '.achievement-card', '.personal-card', '.podcast-card',
+      '.engagement-row', '.timeline-item', '.project-row',
+      '.cert-row', '.edu-row', '.gallery-tile', '.pull-quote',
+      '.section-head', '.stat-row', '.lede', '.story p',
+      '.principle-card', '.expertise-card', '.philosophy-quote',
+      '.am-item', '.manifesto-item', '.case-card'
     ].join(',');
 
     var revealEls = document.querySelectorAll(revealSelectors);
@@ -107,14 +133,12 @@
       });
     }, { threshold: 0.07, rootMargin: '0px 0px -32px 0px' });
 
-    revealEls.forEach(function (el, i) {
-      // Stagger siblings within the same parent
+    revealEls.forEach(function (el) {
       var siblings = Array.from(el.parentElement.children).filter(function (c) {
         return c.tagName === el.tagName && c.className === el.className;
       });
       var sibIdx = siblings.indexOf(el);
       var delay = sibIdx >= 0 ? Math.min(sibIdx * 70, 280) : 0;
-
       el.classList.add('will-animate');
       el.style.transitionDelay = delay + 'ms';
       revealObserver.observe(el);
@@ -124,10 +148,8 @@
   /* ---------- Animated stat counters ---------- */
   function animateCounter(el) {
     var original = el.textContent || '';
-    // Find the first number in the text
     var match = original.match(/(\d+\.?\d*)/);
     if (!match) return;
-
     var numStr = match[1];
     var num = parseFloat(numStr);
     var before = original.slice(0, match.index);
@@ -136,27 +158,21 @@
     var duration = 1100;
     var startTime = null;
 
-    function easeOutCubic(t) {
-      return 1 - Math.pow(1 - t, 3);
-    }
+    function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
 
     function step(timestamp) {
       if (!startTime) startTime = timestamp;
       var elapsed = timestamp - startTime;
       var progress = Math.min(elapsed / duration, 1);
-      var eased = easeOutCubic(progress);
-      var current = num * eased;
+      var current = num * easeOutCubic(progress);
       var formatted = isDecimal ? current.toFixed(1) : Math.round(current).toString();
       el.textContent = before + formatted + after;
       if (progress < 1) requestAnimationFrame(step);
     }
-
     requestAnimationFrame(step);
   }
 
-  var counterSelectors = '.a-num, .stat .num, .stat-lead .num, .timeline-stats .t-stat .num';
-  var counterEls = document.querySelectorAll(counterSelectors);
-
+  var counterEls = document.querySelectorAll('.a-num, .stat .num, .stat-lead .num, .timeline-stats .t-stat .num, .impact-num');
   if ('IntersectionObserver' in window && counterEls.length) {
     var counterObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -166,5 +182,7 @@
         }
       });
     }, { threshold: 0.6 });
+    counterEls.forEach(function (el) { counterObserver.observe(el); });
+  }
 
-    counterEls.f
+})();

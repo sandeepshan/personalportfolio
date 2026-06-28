@@ -299,7 +299,46 @@
   }
   .expertise-card:hover .skill-tag { color: #DEDBD2; }
   .expertise-card:hover .skill-tag::before { background: var(--amber); opacity: 1; }
+
+  /* ---------- Manifesto ---------- */
+  .manifesto-list { display: flex; flex-direction: column; gap: 0; margin-top: 48px; }
+  .manifesto-item {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 32px;
+    padding: 36px 0;
+    border-top: 1px solid var(--hairline);
+    align-items: start;
+    transition: background 0.2s ease;
+  }
+  .manifesto-item:first-child { border-top: none; padding-top: 0; }
+  .manifesto-item:hover { background: transparent; }
+  .m-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--amber);
+    padding-top: 4px;
+    opacity: 0.7;
+  }
+  .m-body h3 { font-size: 21px; margin-bottom: 12px; line-height: 1.25; }
+  .m-body p { font-size: 15.5px; line-height: 1.75; color: #B0ADA6; max-width: 680px; }
+  @media (max-width: 600px) {
+    .manifesto-item { grid-template-columns: 1fr; gap: 8px; }
+  }
+
 </style>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="About — Sandeep Shankar">
+  <meta property="og:description" content="From Senior BI Analyst to Head of Data & Analytics — the story behind 16 years of building teams that turn data into outcomes.">
+  <meta property="og:url" content="https://sandeepshankar.com/about.html">
+  <meta property="og:image" content="https://sandeepshankar.com/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About — Sandeep Shankar">
+  <meta name="twitter:description" content="From Senior BI Analyst to Head of Data & Analytics — the story behind 16 years of building teams that turn data into outcomes.">
+  <meta name="twitter:image" content="https://sandeepshankar.com/og-image.jpg">
 </head>
 <body>
 <div id="reading-progress" role="progressbar" aria-hidden="true"></div>
@@ -315,6 +354,7 @@
       <a href="speaking.html">Speaking</a>
       <a href="life.html">Life</a>
       <a href="contact.html">Contact</a>
+      <a href="now.html">Now</a>
     </div>
   </div>
 </nav>
@@ -326,7 +366,7 @@
   </div>
 </header>
 
-<section class="section" style="padding-top: 24px;">
+<section class="section" data-label="Introduction" style="padding-top: 24px;">
   <div class="wrap story">
     <p>I&#8217;m a data analytics leader with over 16 years of experience helping organisations unlock value from data. My expertise spans analytics strategy, business intelligence, data governance, AI adoption, and building high-performing teams.</p>
     <p>I enjoy partnering with executives to solve complex business challenges while mentoring analysts and creating modern analytics capabilities that scale.</p>
@@ -334,7 +374,7 @@
 </section>
 
 <!-- Leadership Philosophy -->
-<section class="section">
+<section class="section" data-label="Philosophy">
   <div class="wrap">
     <div class="eyebrow">Leadership Philosophy</div>
 
@@ -364,7 +404,7 @@
 </section>
 
 <!-- Core Expertise -->
-<section class="section">
+<section class="section" data-label="Expertise">
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Core Expertise</div>
@@ -418,7 +458,7 @@
 </section>
 
 <!-- Outside work -->
-<section class="section">
+<section class="section" data-label="Life">
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Outside work</div>
@@ -503,6 +543,54 @@
   </div>
 </section>
 
+<!-- What I believe manifesto -->
+<section class="section" data-label="Beliefs">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">What I believe</div>
+      <h2>Five principles I won&rsquo;t compromise on</h2>
+      <p class="lede">Not a framework. Not a methodology. Just the things I&rsquo;ve learned the hard way and held onto.</p>
+    </div>
+    <div class="manifesto-list">
+      <div class="manifesto-item">
+        <div class="m-num">01</div>
+        <div class="m-body">
+          <h3>Data without a decision is just storage</h3>
+          <p>Every dashboard, model, and pipeline should trace back to a decision someone needs to make. If you can&rsquo;t answer &ldquo;what changes when someone sees this?&rdquo; &mdash; stop building it. The world has enough beautiful charts nobody acts on.</p>
+        </div>
+      </div>
+      <div class="manifesto-item">
+        <div class="m-num">02</div>
+        <div class="m-body">
+          <h3>The business problem always comes first</h3>
+          <p>Technology is a means, not a destination. I&rsquo;ve seen organisations spend years modernising platforms while the same broken questions go unanswered. Start with what the business is trying to decide. Everything else follows.</p>
+        </div>
+      </div>
+      <div class="manifesto-item">
+        <div class="m-num">03</div>
+        <div class="m-body">
+          <h3>Trust is the only currency that matters</h3>
+          <p>Executives don&rsquo;t use data they don&rsquo;t trust &mdash; and they&rsquo;re right not to. Data governance isn&rsquo;t bureaucracy; it&rsquo;s the foundation every analysis, model, and conversation depends on. An organisation that trusts its data moves faster than one that doesn&rsquo;t. Full stop.</p>
+        </div>
+      </div>
+      <div class="manifesto-item">
+        <div class="m-num">04</div>
+        <div class="m-body">
+          <h3>Teams beat platforms, every time</h3>
+          <p>No technology has ever built a data culture. People do. The best investment is the one that makes your team trusted by the business &mdash; not the one that impresses a vendor. A motivated, aligned team with average tools will outperform a brilliant platform with disengaged people, always.</p>
+        </div>
+      </div>
+      <div class="manifesto-item">
+        <div class="m-num">05</div>
+        <div class="m-body">
+          <h3>AI amplifies judgment &mdash; it doesn&rsquo;t replace it</h3>
+          <p>The leaders who will thrive in an AI-augmented world aren&rsquo;t the ones who know the most about AI &mdash; they&rsquo;re the ones who ask the best questions. Curiosity and critical thinking compound. Prompt-following doesn&rsquo;t.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Closing reflection -->
 <section class="section" style="border-bottom: none;">
   <div class="wrap">
@@ -519,6 +607,7 @@
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/sandeep-shankar-cdmp-25a88143/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="contact.html">Contact</a>
+      <a href="now.html">Now</a>
     </div>
   </div>
 </footer>
