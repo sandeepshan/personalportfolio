@@ -119,6 +119,10 @@ a { color: inherit; text-decoration: none; }
   line-height: 1;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 @media (max-width: 760px) {

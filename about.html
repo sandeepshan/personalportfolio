@@ -107,6 +107,35 @@
     margin-top: 2px;
   }
 
+  /* ---------- Closing reflection ---------- */
+  .reflection-wrap {
+    max-width: 820px;
+    padding: 48px 0 24px;
+  }
+  .reflection-mark {
+    font-family: var(--font-display);
+    font-size: 100px;
+    line-height: 0.7;
+    color: var(--amber);
+    opacity: 0.18;
+    margin-bottom: -8px;
+    display: block;
+    user-select: none;
+  }
+  .reflection-quote {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 3.2vw, 36px);
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.35;
+    color: var(--cream);
+    letter-spacing: -0.01em;
+  }
+  .reflection-quote em {
+    color: var(--amber);
+    font-style: italic;
+  }
+
   /* ============================================================
      Leadership Philosophy
      ============================================================ */
@@ -277,8 +306,8 @@
 
 <nav class="site-nav">
   <div class="wrap">
-    <a href="index.html" class="nav-logo">Sandeep Shankar<span class="dot">.</span></a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
+    <a href="index.html" class="nav-logo">Sandeep Shankar</a>
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" onclick="var n=document.getElementById('navLinks');n.classList.toggle('open');this.setAttribute('aria-expanded',n.classList.contains('open'))">&#9776;</button>
     <div class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
       <a href="about.html" class="active">About</a>
@@ -299,9 +328,8 @@
 
 <section class="section" style="padding-top: 24px;">
   <div class="wrap story">
-    <p>My career began as a Senior BI Analyst, hands-on with the data itself &#8212; extracting, cleansing, and reporting it for businesses that didn&#8217;t yet trust it to make decisions on its own. Sixteen years later, I lead the function that does that work for an entire organisation, at a scale I couldn&#8217;t have imagined from that first seat.</p>
-    <p>What&#8217;s stayed constant is the belief that data only creates value the day someone outside the data team can act on it without asking for help. Governance, modern platforms, AI enablement &#8212; none of it matters if it doesn&#8217;t end in someone, somewhere, making a better decision faster. That&#8217;s the discipline I&#8217;ve built every team around, from a 25-person squad at Australia Post to the centralised Data, Analytics &amp; AI function I run at iSelect today.</p>
-    <p>I&#8217;ve come to believe leadership in data is less about being the smartest person on the platform and more about being the person the business trusts to translate ambiguity into a plan. My teams have sustained employee engagement above 85% &#8212; not because the work is easy, but because people know what they&#8217;re building toward and why it matters.</p>
+    <p>I&#8217;m a data analytics leader with over 16 years of experience helping organisations unlock value from data. My expertise spans analytics strategy, business intelligence, data governance, AI adoption, and building high-performing teams.</p>
+    <p>I enjoy partnering with executives to solve complex business challenges while mentoring analysts and creating modern analytics capabilities that scale.</p>
   </div>
 </section>
 
@@ -471,6 +499,16 @@
           <div class="feature"><span class="f-dot"></span>A tournament simulator with form-based, random, and host-boost prediction modes</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- Closing reflection -->
+<section class="section" style="border-bottom: none;">
+  <div class="wrap">
+    <div class="reflection-wrap">
+      <div class="reflection-mark">&#8220;</div>
+      <blockquote class="reflection-quote">My career is driven by solving complex business problems, but my life is enriched by family, travel, learning, and meaningful conversations. Those experiences shape how I lead, collaborate, and approach every challenge with <em>curiosity and empathy.</em></blockquote>
     </div>
   </div>
 </section>
