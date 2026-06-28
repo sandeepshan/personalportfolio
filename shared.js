@@ -103,13 +103,6 @@
 
   /* ---------- Scroll reveal ---------- */
   if ('IntersectionObserver' in window) {
-    var revealStyle = document.createElement('style');
-    revealStyle.textContent =
-      '.will-animate{opacity:0;transform:translateY(18px);transition:opacity 0.5s ease,transform 0.5s ease;}' +
-      '.will-animate.animated{opacity:1;transform:translateY(0);}' +
-      '@media(prefers-reduced-motion:reduce){.will-animate{opacity:1!important;transform:none!important;}}';
-    document.head.appendChild(revealStyle);
-
     var revealSelectors = [
       '.achievement-card', '.personal-card', '.podcast-card',
       '.engagement-row', '.timeline-item', '.project-row',

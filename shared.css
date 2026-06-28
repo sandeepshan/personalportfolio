@@ -472,7 +472,17 @@ p {
 /* Applied via JS so content is visible if JS doesn't load */
 .will-animate {
   opacity: 0;
-  transform: translateY(18px)
+  transform: translateY(22px);
+  transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.will-animate.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .will-animate { opacity: 1 !important; transform: none !important; }
+}
+
 /* ---------- Section progress rail ---------- */
 .section-rail {
   position: fixed;
