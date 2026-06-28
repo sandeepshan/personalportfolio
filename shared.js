@@ -9,11 +9,8 @@
   var navToggle = document.getElementById('navToggle');
   var navLinks = document.getElementById('navLinks');
   if (navToggle && navLinks) {
-    function toggleNav() {
-      navLinks.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', String(navLinks.classList.contains('open')));
-    }
-    navToggle.addEventListener('click', toggleNav);
+    // Toggle is handled by inline onclick on each page (Safari-safe).
+    // shared.js only handles: close on link click, close on outside tap/click.
 
     navLinks.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
