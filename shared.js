@@ -9,14 +9,19 @@
   var navToggle = document.getElementById('navToggle');
   var navLinks = document.getElementById('navLinks');
   if (navToggle && navLinks) {
+    var lastToggleWasTouch = false;
     function toggleNav(e) {
       e.preventDefault();
       e.stopPropagation();
+      // On mobile, touchend fires then click fires — ignore the ghost click
+      if (e.type === 'touchend') { lastToggleWasTouch = true; }
+      if (e.type === 'click' && lastToggleWasTouch) { lastToggleWasTouch = false; return; }
+      lastToggleWasTouch = false;
       navLinks.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', navLinks.classList.contains('open'));
+      navToggle.setAttribute('aria-expanded', String(navLinks.classList.contains('open')));
     }
-    navToggle.addEventListener('click', toggleNav);
     navToggle.addEventListener('touchend', toggleNav);
+    navToggle.addEventListener('click', toggleNav);
 
     // Close when a link is tapped
     navLinks.querySelectorAll('a').forEach(function (link) {
