@@ -59,6 +59,12 @@ a { color: inherit; text-decoration: none; }
   background: rgba(15, 20, 25, 0.88);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--hairline);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.site-nav.scrolled {
+  background: rgba(15, 20, 25, 0.97);
+  border-bottom-color: var(--hairline-light);
+  box-shadow: 0 1px 24px rgba(0,0,0,0.35);
 }
 
 .site-nav .wrap {
@@ -350,19 +356,36 @@ p {
   flex-wrap: wrap;
   gap: 16px;
 }
+.footer-left { display: flex; flex-direction: column; gap: 5px; }
+.footer-tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--sage);
+}
 .site-footer p {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--muted);
+  margin: 0;
 }
 .footer-links {
   display: flex;
+  align-items: center;
   gap: 24px;
 }
 .footer-links a {
   font-size: 13px;
   color: var(--sage);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.15s ease;
 }
 .footer-links a:hover { color: var(--cream); }
+.footer-links a svg { width: 15px; height: 15px; flex-shrink: 0; }
+@media (max-width: 600px) {
+  .site-footer .wrap { flex-direction: column; align-items: flex-start; }
+}
 
 /* ---------- Utility ---------- */
 .grid-2 {

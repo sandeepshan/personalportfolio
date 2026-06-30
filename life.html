@@ -136,6 +136,67 @@
     border-radius: 3px;
     font-size: 11px;
   }
+
+  /* ---------- What keeps me buzzing ---------- */
+  .buzz-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 760px) { .buzz-grid { grid-template-columns: 1fr; } }
+
+  .buzz-card {
+    background: var(--ink-card);
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .buzz-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--amber), transparent);
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+  }
+  .buzz-card:hover {
+    border-color: var(--hairline-light);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+  }
+  .buzz-card:hover::before { opacity: 1; }
+
+  .buzz-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    color: var(--amber);
+    opacity: 0.8;
+  }
+  .buzz-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+  .buzz-card h3 {
+    font-size: 20px;
+    margin-bottom: 14px;
+    color: var(--cream);
+  }
+  .buzz-card p {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: #A8A5A0;
+    margin-bottom: 12px;
+  }
+  .buzz-card p:last-child { margin-bottom: 0; }
+
 </style>
   <meta property="og:type" content="website">
   <meta property="og:title" content="Life — Sandeep Shankar">
@@ -208,58 +269,95 @@
   </div>
 </section>
 
-<!-- Photo gallery -->
+<!-- What keeps me buzzing -->
 <section class="section">
   <div class="wrap">
-    <div class="section-head" style="margin-bottom: 28px;">
-      <div class="eyebrow">Photos</div>
-      <h2>Moments worth keeping</h2>
-      <p class="lede">Drop in your photos here &mdash; family, travel, tennis courts, festival nights, anything that belongs on this page.</p>
+    <div class="section-head" style="margin-bottom: 40px;">
+      <div class="eyebrow">Outside work</div>
+      <h2>What keeps me buzzing</h2>
+      <p class="lede">The things that genuinely light me up when I&rsquo;m not thinking about data platforms.</p>
     </div>
 
-    <div class="gallery-grid">
-      <div class="gallery-tile placeholder">
-        <span class="ph-icon">&#127951;</span>
-        <span class="ph-label">Tennis</span>
-        <span class="ph-sub">Courts &middot; tournaments &middot; AO</span>
+    <div class="buzz-grid">
+
+      <div class="buzz-card">
+        <div class="buzz-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="16" cy="20" rx="12" ry="8"/>
+            <ellipse cx="48" cy="20" rx="12" ry="8"/>
+            <rect x="4" y="14" width="56" height="6" rx="3"/>
+            <path d="M28 17 h8"/>
+          </svg>
+        </div>
+        <h3>Sunglasses &amp; Style</h3>
+        <p>Style has always been a form of self-expression for me. I&rsquo;ve built a genuine collection of frames over the years &mdash; each pair a small decision about how you show up. The right pair of sunglasses can make an ordinary Tuesday feel considerably better.</p>
+        <p>Fashion, more broadly, is one of those things I quietly care about. Not in a loud way &mdash; just the attention to detail, the craft, the confidence that comes from wearing something that actually fits.</p>
       </div>
-      <div class="gallery-tile placeholder">
-        <span class="ph-icon">&#127866;</span>
-        <span class="ph-label">Onam &amp; Vishu</span>
-        <span class="ph-sub">WMCG &middot; Wyndham</span>
+
+      <div class="buzz-card">
+        <div class="buzz-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 28 C10 28 14 20 24 18 L38 16 C46 15 52 18 58 22 L60 24 L60 32 L4 32 Z"/>
+            <circle cx="14" cy="32" r="5"/>
+            <circle cx="50" cy="32" r="5"/>
+            <path d="M36 16 L40 10 L50 10 L56 16"/>
+            <!-- lightning bolt -->
+            <path d="M34 4 L29 13 L33 13 L28 22" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <h3>Fast Cars &amp; Tesla</h3>
+        <p>I&rsquo;ve always been drawn to the engineering and design behind great cars &mdash; the way performance and aesthetics come together. My Tesla isn&rsquo;t just transport; it&rsquo;s a daily reminder that you can rethink something completely and make it better.</p>
+        <p>The instant torque never gets old. Neither does the fact that software updates can make your car feel new again. As a data person, I find the whole ecosystem genuinely fascinating.</p>
       </div>
-      <div class="gallery-tile placeholder">
-        <span class="ph-icon">&#127951;</span>
-        <span class="ph-label">Cricket season</span>
-        <span class="ph-sub">IPL &middot; watching &middot; playing</span>
+
+      <div class="buzz-card">
+        <div class="buzz-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 32 C8 20 16 14 24 14 C32 14 40 20 40 32"/>
+            <line x1="6" y1="32" x2="42" y2="32"/>
+            <line x1="6" y1="36" x2="42" y2="36"/>
+            <!-- steam -->
+            <path d="M18 10 C18 7 20 7 20 4" stroke-width="1.5" opacity="0.7"/>
+            <path d="M24 8 C24 5 26 5 26 2" stroke-width="1.5" opacity="0.7"/>
+            <path d="M30 10 C30 7 32 7 32 4" stroke-width="1.5" opacity="0.7"/>
+          </svg>
+        </div>
+        <h3>Delicious Indian Food</h3>
+        <p>Growing up in Kerala means having strong opinions about food. I still believe the best meals in the world are made in someone&rsquo;s home, not a restaurant &mdash; but Melbourne&rsquo;s Indian food scene comes close enough to keep me exploring regularly.</p>
+        <p>There&rsquo;s something deeply grounding about a proper curry. The spice, the complexity, the way it connects you to memory and place. My family knows that a good meal fixes almost anything.</p>
       </div>
-      <div class="gallery-tile placeholder">
-        <span class="ph-icon">&#9992;&#65039;</span>
-        <span class="ph-label">Travel</span>
-        <span class="ph-sub">Family trips</span>
+
+      <div class="buzz-card">
+        <div class="buzz-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <!-- cricket bat + ball -->
+            <rect x="28" y="4" width="8" height="26" rx="4" transform="rotate(30 32 17)"/>
+            <line x1="30" y1="27" x2="10" y2="44" stroke-width="3"/>
+            <circle cx="14" cy="16" r="6"/>
+            <path d="M11 13 C12 11 16 11 17 13"/>
+            <path d="M11 19 C12 21 16 21 17 19"/>
+          </svg>
+        </div>
+        <h3>Cricket &amp; Sport</h3>
+        <p>IPL season is a serious affair in our house. Fantasy league, live scores, strong opinions about team selection &mdash; cricket is part of how I grew up and it hasn&rsquo;t loosened its grip. The Australian Open is a family fixture too; my son plays junior tennis competitively.</p>
+        <p>Sport teaches you things that boardrooms don&rsquo;t &mdash; how to reset after a bad delivery, how to build a team, and how to stay calm when the pressure is real.</p>
       </div>
-      <div class="gallery-tile placeholder">
-        <span class="ph-icon">&#127917;</span>
-        <span class="ph-label">Kalasandhya</span>
-        <span class="ph-sub">Cultural evening &middot; annual</span>
-      </div>
-      <div class="gallery-tile placeholder">
-        <span class="ph-icon">&#127968;</span>
-        <span class="ph-label">Home &amp; family</span>
-        <span class="ph-sub">Melbourne &middot; Wyndham</span>
-      </div>
+
     </div>
   </div>
 </section>
 
 <footer class="site-footer">
   <div class="wrap">
-    <p>&copy; 2026 Sandeep Shankar. Melbourne, Australia.</p>
-    <div class="footer-links">
-      <a href="https://www.linkedin.com/in/sandeep-shankar-cdmp-25a88143/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="contact.html">Contact</a>
-      <a href="now.html">Now</a>
-    </div>
+  <div class="footer-left">
+    <div class="footer-tagline">Turning data, analytics and AI into measurable business growth.</div>
+    <p>&copy; 2026 Sandeep Shankar &middot; Melbourne, Australia</p>
+  </div>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/sandeep-shankar-cdmp-25a88143/" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+    <a href="contact.html">Contact</a>
+    <a href="now.html">Now</a>
+  </div>
   </div>
 </footer>
 
